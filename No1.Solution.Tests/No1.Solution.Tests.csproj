@@ -62,6 +62,8 @@
   <ItemGroup>
     <Compile Include="ForTests\RepositoryNoThree.cs" />
     <Compile Include="ForTests\RepositoryNoTwo.cs" />
+    <Compile Include="ForTests\VerifierForContains.cs" />
+    <Compile Include="ForTests\VerifierForLength.cs.cs" />
     <Compile Include="PasswordCheckerServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

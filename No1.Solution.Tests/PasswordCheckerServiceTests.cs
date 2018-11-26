@@ -17,16 +17,23 @@ namespace No1.Solution.Tests
         public void InsertNumber_SetNullPassword_ThrowException()
         {
             checker = new PasswordCheckerService(new SqlRepository());
-            Assert.Throws<ArgumentNullException>(() => checker.VerifyPassword(null));
+            Assert.Throws<ArgumentNullException>(() => checker.CreateRepository(null));
+        }
+
+        [Test]
+        public void InsertNumber_SetEmptyPassword_ThrowException()
+        {
+            checker = new PasswordCheckerService(new SqlRepository());
+            Assert.Throws<ArgumentException>(() => checker.CreateRepository(string.Empty));
         }
 
         [Test]
         public void VerifyPassword_SetNumbersInPassword_ReturnFalseAndHasntLetters()
         {
             string password = "12345678";
-            var expectedResult = (false, $"{password} hasn't alphanumerical chars");
+            var expectedResult = (false, "Password isn't valid");
             checker = new PasswordCheckerService(new SqlRepository());
-            var result = checker.VerifyPassword(password);
+            var result = checker.CreateRepository(password, new VerifierForContains());
             Assert.AreEqual(expectedResult, result);
         }
 
@@ -34,9 +41,9 @@ namespace No1.Solution.Tests
         public void VerifyPassword_SetLettersInPassword_ReturnFalseAndHasntDigits()
         {
             string password = "abcasdfg";
-            var expectedResult = (false, $"{password} hasn't digits");
+            var expectedResult = (false, "Password isn't valid");
             checker = new PasswordCheckerService(new SqlRepository());
-            var result = checker.VerifyPassword(password);
+            var result = checker.CreateRepository(password, new VerifierForContains());
             Assert.AreEqual(expectedResult, result);
         }
 
@@ -44,9 +51,9 @@ namespace No1.Solution.Tests
         public void VerifyPassword_Set17LettersInPasswordAndOtherRepository_ReturnFalseAndLengthTooLong ()
         {
             string password = "abcdefghijklmnopr";
-            var expectedResult = (false, $"{password} length too long");
+            var expectedResult = (false, "Password isn't valid");
             checker = new PasswordCheckerService(new RepositoryNoThree());
-            var result = checker.VerifyPassword(password);
+            var result = checker.CreateRepository(password, new VerifierForLength());
             Assert.AreEqual(expectedResult, result);
         }
 
@@ -54,19 +61,9 @@ namespace No1.Solution.Tests
         public void VerifyPassword_SetTruePassword_ReturnExpectedResult()
         {
             string password = "abcdefghijklmnopr";
-            var expectedResult = (false, $"{password} length too long");
+            var expectedResult = (false, "Password isn't valid");
             checker = new PasswordCheckerService(new RepositoryNoThree());
-            var result = checker.VerifyPassword(password);
-            Assert.AreEqual(expectedResult, result);
-        }
-
-        [Test]
-        public void VerifyPassword_SetEmptyStringPasswordAndOtherRepository_ReturnExpectedResult()
-        {
-            string password = string.Empty;
-            var expectedResult = (false, $"{password} is empty ");
-            checker = new PasswordCheckerService(new RepositoryNoTwo());
-            var result = checker.VerifyPassword(password);
+            var result = checker.CreateRepository(password, new VerifierForLength(), new VerifierForContains());
             Assert.AreEqual(expectedResult, result);
         }
 
@@ -74,9 +71,9 @@ namespace No1.Solution.Tests
         public void VerifyPassword_SetTooShortPasswordAndOtherRepository_ReturnExpectedResult()
         {
             string password = "asdfs";
-            var expectedResult = (false, $"{password} length too short");
+            var expectedResult = (false, "Password isn't valid");
             checker = new PasswordCheckerService(new RepositoryNoTwo());
-            var result = checker.VerifyPassword(password);
+            var result = checker.CreateRepository(password, new VerifierForLength());
             Assert.AreEqual(expectedResult, result);
         }
 
@@ -86,7 +83,7 @@ namespace No1.Solution.Tests
             string password = "asdfs111111";
             var expectedResult = (true, "Password is Ok. User was created");
             checker = new PasswordCheckerService(new RepositoryNoTwo());
-            var result = checker.VerifyPassword(password);
+            var result = checker.CreateRepository(password, new VerifierForContains());
             Assert.AreEqual(expectedResult, result);
         }
     }
