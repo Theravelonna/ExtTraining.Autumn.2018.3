@@ -43,6 +43,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RandomFileGenerators\RandomBytesFileGenerator.cs" />
+    <Compile Include="RandomFileGenerateManager.cs" />
+    <Compile Include="RandomFileGenerator.cs" />
+    <Compile Include="RandomFileGenerators\RandomCharsFileGenerator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Explanation.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
