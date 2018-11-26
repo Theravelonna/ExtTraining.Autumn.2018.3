@@ -42,7 +42,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FirstVariant\FirstCalculator.cs" />
+    <Compile Include="FirstVariant\IAverageCalculator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SecondVariant\AbstractCalculator.cs" />
+    <Compile Include="SecondVariant\AverageMeanForAbstractClass.cs" />
+    <Compile Include="SecondVariant\AverageMedianForAbstractClass.cs" />
+    <Compile Include="SecondVariant\SecondCalculator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -47,6 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HelpClasses\AverageMean.cs" />
+    <Compile Include="HelpClasses\AverageMedian.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestCalculator.cs" />
   </ItemGroup>
