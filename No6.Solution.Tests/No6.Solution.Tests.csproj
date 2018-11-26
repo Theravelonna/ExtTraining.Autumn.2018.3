@@ -48,6 +48,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomEnumerableTests.cs" />
+    <Compile Include="HelpClasses\GeneratorDouble.cs" />
+    <Compile Include="HelpClasses\GeneratorInt.cs" />
+    <Compile Include="HelpClasses\GeneratorIntOther.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
