@@ -11,14 +11,11 @@ namespace No2.Solution.Console
         static void Main(string[] args)
         {
             var stock = new Stock();
-
             var bank = new Bank("Bank", stock);
+            stock.NewEvent();
+
             var broker = new Broker("Broker", stock);
-
-            stock.Register(bank);
-            stock.Register(broker);
-            stock.Market();
-
+            stock.NewEvent();
             System.Console.ReadLine();
         }
     }
